@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Read Text File with AJAX</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var printButton = document.getElementById("printButton");
+            var fileContent = document.getElementById("fileContent");
+
+            printButton.addEventListener("click", function() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "file.txt", true);
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            fileContent.textContent = xhr.responseText;
+                        } else {
+                            alert("Error reading the file.");
+                        }
+                    }
+                };
+
+                xhr.send();
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <h2>Read Text File with AJAX</h2>
+    <button id="printButton">Print</button>
+    <div id="fileContent"></div>
+</body>
+
+</html>
